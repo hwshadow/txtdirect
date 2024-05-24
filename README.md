@@ -30,8 +30,9 @@ Best place to start is our [contribution guide](/CONTRIBUTING.md).
 
 Copyright 2017 - The TXTDirect Authors
 
+---
 
-# How-to:
+# How-to: build and run mock env
 ```
 
 ## local
