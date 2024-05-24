@@ -1,4 +1,3 @@
-version: "3"
 services:
   bind9:
     container_name: bind-dns
@@ -6,11 +5,36 @@ services:
     environment:
       - BIND9_USER=root
       - TZ=America/New_York
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
     volumes:
       - ./config/bind:/etc/bind
       - ./cache:/var/cache/bind
       - ./records:/var/lib/bind
     restart: unless-stopped
+    networks:
+      vpcbr:
+        ipv4_address: 10.55.12.5
+  txtdirect:
+    container_name: txtdirect
+    image: c.txtdirect.org/txtdirect:v0.5.1
+    command: run
+    extra_hosts:
+    - "example.lan:10.55.12.6"
+    - "test-google.example.lan:10.55.12.6"
+    - "test-video.example.lan:10.55.12.6"
+    dns:
+      - 10.55.12.5
+    ports:
+      - "8080:8080/tcp"
+    volumes:
+    - ./config/caddy/Caddyfile:/Caddyfile
+    restart: unless-stopped
+    networks:
+      vpcbr:
+        ipv4_address: 10.55.12.6
+networks:
+  vpcbr:
+    driver: bridge
+    ipam:
+     config:
+       - subnet: 10.55.0.0/16
+         gateway: 10.55.0.1

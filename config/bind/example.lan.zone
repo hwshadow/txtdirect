@@ -10,11 +10,14 @@ $ORIGIN example.lan.
                                 )
 @           IN      NS      ns1.example.lan.
 
-ns1		    IN      A	    192.168.0.75
+ns1		    IN      A	    10.55.12.5
 
-; Main VLAN network services
-deadbeef		IN		A		192.168.0.1
+; test
+deadbeef		IN		A		10.55.12.5
 
 ; TXT direct
-www.example.com               3600 IN CNAME  txtdirect.example.com.
-_redirect.www.example.com     3600 IN TXT    "v=txtv0;type=host;code=301;to=https://about.example.com"
+txtdirect.example.lan. 		IN		A		10.55.12.6 
+test-google.example.lan.               3600 IN CNAME  txtdirect.example.lan.
+_redirect._.test-google.example.lan.     3600 IN TXT    "v=txtv0;type=host;code=302;to=https://www.google.com"
+test-video.example.lan.               3600 IN CNAME  txtdirect.example.lan.
+_redirect._.test-video.example.lan.     3600 IN TXT    "v=txtv0;type=host;code=302;to=https://www.youtube.com/watch?v=iWIADZKU9dwn"
