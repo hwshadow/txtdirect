@@ -30,3 +30,8 @@ Best place to start is our [contribution guide](/CONTRIBUTING.md).
 
 Copyright 2017 - The TXTDirect Authors
 
+
+# How-to:
+```
+./txtdirect run -c ./config/caddy/Caddyfile
+```
