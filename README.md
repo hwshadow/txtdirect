@@ -44,6 +44,18 @@ make image-build
 docker compose up  # terminal-1
 docker compose exec -it txtdirect sh # terminal-2
 ```
+
+see the following config:
+
+* [caddy (is webserver hosting txtdirect)](/config/caddy)
+    * hosted on `port 8080`
+* [bind9 (is mock DNS nameserver)](/config/bind)
+    * mocked under the `example.lan` domain
+    * named.conf - holds the [txtdirect redirect rules](https://about.txtdirect.org/docs/examples/host/) 
+* [docker compose (describes the mock env)](/docker-compose.yaml)
+    * `dns` directive points us to the mock bind server
+    * `extra_hosts` acts as the initial lookup pushing toward txtdirect
+
 ```
 / # curl -L -v test-google.example.lan:8080
 * Host test-google.example.lan:8080 was resolved.
