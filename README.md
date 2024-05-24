@@ -34,12 +34,11 @@ Copyright 2017 - The TXTDirect Authors
 
 # How-to: build and run mock env
 ```
-
-## local
+## binary build w/o docker
 make build
 ./txtdirect run -c ./config/caddy/Caddyfile
 
-## full environment mock
+## full environment mock w/ docker & docker compose
 make image-build
 docker compose up  # terminal-1
 docker compose exec -it txtdirect sh # terminal-2
